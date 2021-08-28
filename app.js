@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const express = require ("express");
 const ejs=require("ejs");
 const expressLayouts=require("express-ejs-layouts");
@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({limit:"10mb",extended:false}))
 
 //database
 const mongoose= require("mongoose");
-mongoose.connect("mongodb+srv://anurag:atlas30@cluster0.vx63t.mongodb.net/mybrary?retryWrites=true&w=majority",{useNewUrlParser:true, useUnifiedTopology: true  });
+mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser:true, useUnifiedTopology: true  });
 const db=mongoose.connection
 db.on("error",error=>console.log(error));
 db.once("open",()=>console.log("Connected to Mongoose"));
